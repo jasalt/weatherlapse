@@ -4,9 +4,12 @@ Esimerkkiprojekti aineopintojen projektityö-kurssille.
 ## Synopsis
 Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääkamera-videomateriaalia ja esittää samassa näkymässä sääasemasta ladattua säähavainto-dataa.
 
-[UI Proto](media/sketch.png) 
+![UI Proto](media/sketch.png) 
 
-## TODO
+# Lisenssi
+[MIT](LICENSE)
+
+# TODO
 - Kaiva videolinkit Youtubesta
 - Sää-datan lukeminen
 - Näkymä eri päivien valintaan
@@ -14,5 +17,5 @@ Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääka
 - Käppyrät Chartkick kirjastolla
 - Deploy
 
-## DONE
-
+# DONE
+...
