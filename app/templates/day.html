@@ -11,13 +11,16 @@
 <h1>Valittu päivä: {{ day }}</h1>
 <div class="important">
     <ul>
-        <li>TODO näytä Youtube-video</</li>
-        <li>TODO oikeaa dataa käppyröihin.</li>
+        <li>TODO näytä oikeaa dataa</</li>
     </ul>    
 </div>
 
 <div>
-    {% line_chart data %}    
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/{{video_id}}" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div>
+    {% line_chart weather_data %}    
 </div>
 
 
