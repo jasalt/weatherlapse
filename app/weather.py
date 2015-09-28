@@ -16,13 +16,21 @@ print("Reading weather data")
 
 for fname in filenames:
     winds = []
-    temperatures = []
+    temps_out = []
+    temps_in = []
+    humidities = []
     with open(DATA_DIR + fname, 'r') as f:
         for line in f:
             cols = line.split(',')
+            temps_in.append([cols[0], float(cols[3])])
+            humidities.append([cols[0], float(cols[4])])
+            temps_out.append([cols[0], float(cols[5])])
             winds.append([cols[0], float(cols[7])])
-            temperatures.append([cols[0], float(cols[5])])
     day = int(fname[8:10])
-    data = [{'data': temperatures, 'name': 'Temperature C'},
-            {'data': winds, 'name': 'Wind m/s'}]
-    daily_data[day] = data
+    temperatures = [{'data': temps_out, 'name': 'Temperature outside'},
+                    {'data': temps_in, 'name': 'Temperature inside'}]
+
+    daily_data[day] = {}
+    daily_data[day]['temp'] = temperatures
+    daily_data[day]['wind'] = winds
+    daily_data[day]['humid'] = humidities

@@ -15,7 +15,16 @@
 </div>
 
 <div>
-    {% line_chart weather_data %}
+    <p>Lämpötila sisällä vs ulkona:</p>
+    {% line_chart weather_data['temp'] %}
+</div>
+<div>
+    <p>Tuulen nopeus, keskiarvo:</p>
+    {% line_chart weather_data['wind'] %}
+</div>
+<div>
+    <p>Kosteus:</p>
+    {% line_chart weather_data['humid'] %}
 </div>
 
 
