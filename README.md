@@ -23,22 +23,23 @@ Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääka
 
 Browse to http://localhost:5000
 
-# Heroku guide
+# Heroku deploy guide
 
 With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account configured:
 
 1) Clone repository `git clone <repository url>`
+
 2) Create Heroku app `heroku create <application_name>`
+
 3) Push local repository to Heroku `git push heroku master`
+
 4) Access application at `http://<application_name>.herokuapp.com`
 
 # TODO
 - [x] Kaiva videolinkit Youtubesta
+- [x] Näkymä eri päivien valintaan
+- [x] Päivä-näkymä
 - [x] Käppyrät Chartkick kirjastolla
-- [ ] Sää-datan lukeminen
-- [ ] Näkymä eri päivien valintaan
-- [ ] Päivä-näkymä
-- [ ] Deploy
-
-# DONE
-...
+- [x] Deploy
+- [ ] Siirtymisnappulat
+- [ ] Sää-datan parsiminen
