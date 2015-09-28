@@ -19,17 +19,26 @@ Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääka
     workon tiea207-demo
 
     # Run development server
-    ./dev.py
+    ./run-dev.py
 
 Browse to http://localhost:5000
 
+# Heroku guide
+
+With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account configured:
+
+1) Clone repository `git clone <repository url>`
+2) Create Heroku app `heroku create <application_name>`
+3) Push local repository to Heroku `git push heroku master`
+4) Access application at `http://<application_name>.herokuapp.com`
+
 # TODO
-- Kaiva videolinkit Youtubesta
-- Sää-datan lukeminen
-- Näkymä eri päivien valintaan
-- Päivä-näkymä
-- Käppyrät Chartkick kirjastolla
-- Deploy
+- [x] Kaiva videolinkit Youtubesta
+- [x] Käppyrät Chartkick kirjastolla
+- [ ] Sää-datan lukeminen
+- [ ] Näkymä eri päivien valintaan
+- [ ] Päivä-näkymä
+- [ ] Deploy
 
 # DONE
 ...
