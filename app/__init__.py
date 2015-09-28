@@ -1,6 +1,7 @@
 from flask import Flask, render_template, Blueprint
 import chartkick
 from app.youtube import daily_videos
+from app.weather import daily_data
 
 app = Flask(__name__)
 
@@ -34,9 +35,9 @@ def view_day(date):
                            ['2013-09-01 00:00:00 UTC', 15.9],
                            ['2013-10-01 00:00:00 UTC', 60.9]],
                   'name': 'Firefox'}]
-
+    date = int(date)
     try:
-        video_id = daily_videos[int(date)].videoid
+        video_id = daily_videos[date].videoid
         print("Show video %s for day %s." % (video_id, date))
     except:
         video_id = None
@@ -57,7 +58,7 @@ def view_day(date):
         next_day = None
 
     return render_template('day.html',
-                           video_id=video_id, weather_data=mock_data,
+                           video_id=video_id, weather_data=daily_data.get(date),
                            day=date, prev_day=prev_day, next_day=next_day)
 
 if __name__ == "__main__":
