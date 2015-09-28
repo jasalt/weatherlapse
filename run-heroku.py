@@ -21,6 +21,7 @@ def run_tornado():
 
     http_server = HTTPServer(WSGIContainer(app))
     http_server.listen(_PORT)
+    print("Start serving")
     IOLoop.instance().start()
 
 run_tornado()
