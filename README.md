@@ -41,5 +41,8 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 - [x] Päivä-näkymä
 - [x] Käppyrät Chartkick kirjastolla
 - [x] Deploy
-- [ ] Siirtymisnappulat
-- [ ] Sää-datan parsiminen
+- [x] Siirtymisnappulat
+- [x] Sää-datan parsiminen
+- [ ] CSS
+- [ ] Kalenterinäkymä
+- [ ] Lisää sisältöä
