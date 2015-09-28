@@ -11,8 +11,8 @@
 <h1>Valittu päivä: {{ day }}</h1>
 <div class="important">
     <ul>
-        <li>TODO näytä oikeaa dataa</</li>
-    </ul>    
+        <li>TODO näytä oikeaa dataa</li>
+    </ul>
 </div>
 
 <div>
@@ -20,10 +20,20 @@
 </div>
 
 <div>
-    {% line_chart weather_data %}    
+    {% line_chart weather_data %}
 </div>
 
 
+{% if prev_day %}
+<a href="{{url_for('view_day', date=prev_day)}}">Edellinen</a>
+{% else %}
+<p>Ei vanhempia videoita</p>
+{% endif %}
 
+{% if next_day %}
+<a href="{{url_for('view_day', date=next_day)}}">Seuraava</a>
+{% else %}
+<p>Ei uudempia videoita</p>
+{% endif %}
 
 {% endblock %}

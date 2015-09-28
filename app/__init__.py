@@ -42,8 +42,23 @@ def view_day(date):
         video_id = None
         print("No video for date.")
 
-    return render_template('day.html', day=date, weather_data=mock_data,
-                           video_id=video_id)
+    days = list(daily_videos.keys())
+    this_index = days.index(int(date))
+
+    try:
+        assert this_index != 0
+        prev_day = days[this_index - 1]
+    except:
+        prev_day = None
+
+    try:
+        next_day = days[this_index + 1]
+    except:
+        next_day = None
+
+    return render_template('day.html',
+                           video_id=video_id, weather_data=mock_data,
+                           day=date, prev_day=prev_day, next_day=next_day)
 
 if __name__ == "__main__":
     app.run(debug=True)
