@@ -13,7 +13,7 @@ app.jinja_env.add_extension("chartkick.ext.charts")
 
 @app.route("/")
 def view_home():
-    return render_template('home.html')
+    return render_template('home.html', videos=daily_videos)
 
 
 @app.route("/day/<date>")

@@ -11,9 +11,13 @@
 <h1>Alkusivu</h1>
 <h3 class="important">Tervetuloa sääkamera sivustolle!</h3>
 
+<h3>Kaikki videot heinäkuulta:</h3>
 <ul>
-    <li>TODO näytä kalenteri</</li>
-    <li>TODO viimeisin päivä olisi myös mukava näyttää tässä</li>
+    {% for day, video in videos.items() %}
+    <li>
+        <a href="{{url_for('view_day', date=day)}}">{{day}}</a>
+    </li>
+    {% endfor %}
 </ul>
 
 {% endblock %}
