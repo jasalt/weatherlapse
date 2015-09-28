@@ -8,7 +8,19 @@
 {% endblock %}
 {% block content %}
 
-<h1>Valittu päivä: {{ day }}</h1>
+<h1>Näytetään {{ day }}. päivä heinäkuuta</h1>
+
+{% if prev_day %}
+<a href="{{url_for('view_day', date=prev_day)}}">Edellinen</a>
+{% else %}
+<p>Ei vanhempia videoita</p>
+{% endif %}
+
+{% if next_day %}
+<a href="{{url_for('view_day', date=next_day)}}">Seuraava</a>
+{% else %}
+<p>Ei uudempia videoita</p>
+{% endif %}
 
 <div class="video-container">
     <iframe width="600" height="340" src="https://www.youtube.com/embed/{{video_id}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
@@ -27,17 +39,5 @@
     {% line_chart weather_data['humid'] %}
 </div>
 
-
-{% if prev_day %}
-<a href="{{url_for('view_day', date=prev_day)}}">Edellinen</a>
-{% else %}
-<p>Ei vanhempia videoita</p>
-{% endif %}
-
-{% if next_day %}
-<a href="{{url_for('view_day', date=next_day)}}">Seuraava</a>
-{% else %}
-<p>Ei uudempia videoita</p>
-{% endif %}
 
 {% endblock %}
