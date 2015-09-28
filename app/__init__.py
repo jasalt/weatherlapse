@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Blueprint
 import chartkick
-from youtube import daily_videos
+from app.youtube import daily_videos
 
 app = Flask(__name__)
 
@@ -41,7 +41,7 @@ def view_day(date):
     except:
         video_id = None
         print("No video for date.")
-    
+
     return render_template('day.html', day=date, weather_data=mock_data,
                            video_id=video_id)
 

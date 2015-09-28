@@ -1,5 +1,8 @@
+appnope==0.1.0
+chartkick==0.4.2
 decorator==4.0.4
 Flask==0.10.1
+gnureadline==6.3.3
 ipdb==0.8.1
 ipython==4.0.0
 ipython-genutils==0.1.0

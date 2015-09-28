@@ -9,9 +9,17 @@ Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääka
 
 # Development guide
 
+    ## Setup & activate virtualenv (with help of virtualenvwrapper)
+
+    # Without existing virtualenv (developing on Python 3.4.0):
     mkvirtualenv tiea207-demo -p python3
     pip install -r requirements.txt
-    python app/server.py
+    
+    # With existing virtualenv:
+    workon tiea207-demo
+
+    # Run development server
+    ./dev.py
 
 Browse to http://localhost:5000
 
