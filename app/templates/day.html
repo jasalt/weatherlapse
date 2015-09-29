@@ -2,45 +2,63 @@
 {% block title %}Index{% endblock %}
 {% block head %}
 {{ super() }}
-<style type="text/css">
- .important { color: #336699; }
-</style>
 <script src="{{ url_for('static', filename='lib/jquery-1.8.3.min.js') }}"></script>
 <script src="{{ url_for('static', filename='lib/highcharts.js') }}"></script>
 <script src="{{ url_for('ck_page.static', filename='chartkick.js') }}"></script>
 {% endblock %}
-{% block content %}
 
-<h1>Näytetään {{ day }}. päivä heinäkuuta</h1>
+{% block nav_content %}
+{{ super () }}
+<div class="col-xs-4 col-xs-offset-1 text-center">
+    <nav>
+        <ul class="pagination">
+            {% if prev_day %}
+            <li>
+                <a href="{{url_for('view_day', date=prev_day)}}" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            {% endif %}
 
-{% if prev_day %}
-<a href="{{url_for('view_day', date=prev_day)}}">Edellinen</a>
-{% else %}
-<p>Ei vanhempia videoita</p>
-{% endif %}
+            <li class="active"><a href="#">{{ day }}. July<span class="sr-only">(current)</span></a></li>
 
-{% if next_day %}
-<a href="{{url_for('view_day', date=next_day)}}">Seuraava</a>
-{% else %}
-<p>Ei uudempia videoita</p>
-{% endif %}
-
-<div class="video-container">
-    <iframe width="600" height="340" src="https://www.youtube.com/embed/{{video_id}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+            {% if next_day %}
+            <li>
+                <a href="{{url_for('view_day', date=next_day)}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="disabled"><a href="#" aria-label="Next">
+                <span aria-hidden="true">&laquo;</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
+{% endblock %}
 
-<div>
-    <p>Lämpötila sisällä vs ulkona:</p>
+{% block content %}
+<div class="row">
+    <div class="video-container">
+        <iframe width="600" height="340" src="https://www.youtube.com/embed/{{video_id}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<div class="row">
+    <p>Temperature outside vs inside (C):</p>
     {% line_chart weather_data['temp'] %}
 </div>
-<div>
-    <p>Tuulen nopeus, keskiarvo:</p>
-    {% line_chart weather_data['wind'] %}
+<div class="row">
+    <div class="col-md-6">
+        <p>Wind speed, average (m/s):</p>
+        {% line_chart weather_data['wind'] %}
+    </div>
+    <div class="col-md-6">
+        <p>Relative humidity:</p>
+        {% line_chart weather_data['humid'] %}
+    </div>
 </div>
-<div>
-    <p>Kosteus:</p>
-    {% line_chart weather_data['humid'] %}
-</div>
-
 
 {% endblock %}

@@ -3,7 +3,7 @@
     <head>
         {% block head %}
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
-        
+
         <title>{% block title %}{% endblock %} - My Webpage</title>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.min.css')}}" />
@@ -12,14 +12,27 @@
         {% endblock %}
     </head>
     <body>
-        <a href="/">Alkuun</a>
-        
-        <div id="content">{% block content %}{% endblock %}</div>
-        
-        <div id="footer">
-            {% block footer %}
-            &copy; Copyleft 2015 Jarkko Saltiola - MIT Source Code <a href="https://github.com/jasalt/tiea207-demo">at Github</a>
-            {% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <a class="navbar-brand" href="/">
+                        <em>weather<br/>lapse</em>
+                    </a>
+                </div>
+                {% block nav_content %}
+                {% endblock %}
+            </div>
+            
+            <div id="content">{% block content %}{% endblock %}</div>
+            
+
+            <div id="footer" class="text-center">
+                {% block footer %}
+                &copy; Copyright 2015 Jarkko Saltiola - MIT Source Code
+                <a href="https://github.com/jasalt/tiea207-demo">at Github</a>
+                {% endblock %}
+            </div>
+
         </div>
     </body>
 </html>

@@ -1,17 +1,12 @@
 {% extends "base.html" %}
+
 {% block title %}Index{% endblock %}
-{% block head %}
-{{ super() }}
-<style type="text/css">
- .important { color: #336699; }
-</style>
-{% endblock %}
+
 {% block content %}
 
-<h1>Alkusivu</h1>
-<h3 class="important">Tervetuloa sääkamera sivustolle!</h3>
-
-<h3>Kaikki videot heinäkuulta:</h3>
+<h2><a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">~ 62°N 26°E</a></h2>
+<p>Timelapse videos mixed with weather station data.</p>
+<h3 class="important">July 2015</h3>
 <ul>
     {% for day, video in videos.items() %}
     <li>
