@@ -3,14 +3,13 @@
     <head>
         {% block head %}
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
-        <title>{% block title %}{% endblock %} - My Webpage</title>
-        {% endblock %}
-
-        <script src="{{ url_for('static', filename='jquery-1.8.3.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='highcharts.js') }}"></script>
         
-        <script src="{{ url_for('ck_page.static', filename='chartkick.js') }}"></script>
-        <!-- <script src="ck/static/chartkick.js"></script> -->
+        <title>{% block title %}{% endblock %} - My Webpage</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.min.css')}}" />
+        <script src="{{ url_for('static', filename='lib/bootstrap.min.js') }}"></script>
+
+        {% endblock %}
     </head>
     <body>
         <a href="/">Alkuun</a>
