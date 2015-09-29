@@ -43,6 +43,6 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 - [x] Deploy
 - [x] Siirtymisnappulat
 - [x] Sää-datan parsiminen
-- [ ] CSS
+- [x] CSS
 - [ ] Kalenterinäkymä
 - [ ] Lisää sisältöä
