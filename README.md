@@ -44,5 +44,6 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 - [x] Siirtymisnappulat
 - [x] Sää-datan parsiminen
 - [x] CSS
-- [ ] Kalenterinäkymä
+- [ ] Kalenterivalitsin https://eonasdan.github.io/bootstrap-datetimepicker/
+- [ ] Kunnollinen päiväysten hallinta
 - [ ] Lisää sisältöä
