@@ -9,19 +9,41 @@ Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääka
 
 # Development guide
 
+    ## Setup & activate virtualenv (with help of virtualenvwrapper)
+
+    # Without existing virtualenv (developing on Python 3.4.0):
     mkvirtualenv tiea207-demo -p python3
     pip install -r requirements.txt
-    python app/server.py
+    
+    # With existing virtualenv:
+    workon tiea207-demo
+
+    # Run development server
+    ./run-dev.py
 
 Browse to http://localhost:5000
 
-# TODO
-- Kaiva videolinkit Youtubesta
-- Sää-datan lukeminen
-- Näkymä eri päivien valintaan
-- Päivä-näkymä
-- Käppyrät Chartkick kirjastolla
-- Deploy
+# Heroku deploy guide
 
-# DONE
-...
+With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account configured:
+
+1) Clone repository `git clone <repository url>`
+
+2) Create Heroku app `heroku create <application_name>`
+
+3) Push local repository to Heroku `git push heroku master`
+
+4) Access application at `http://<application_name>.herokuapp.com`
+
+# TODO
+- [x] Kaiva videolinkit Youtubesta
+- [x] Näkymä eri päivien valintaan
+- [x] Päivä-näkymä
+- [x] Käppyrät Chartkick kirjastolla
+- [x] Deploy
+- [x] Siirtymisnappulat
+- [x] Sää-datan parsiminen
+- [x] CSS
+- [ ] Kalenterivalitsin https://eonasdan.github.io/bootstrap-datetimepicker/
+- [ ] Kunnollinen päiväysten hallinta
+- [ ] Lisää sisältöä

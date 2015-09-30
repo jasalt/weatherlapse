@@ -6,6 +6,7 @@ import pafy
 # TODO import app key
 # pafy.set_api_key(key)
 
+print("Loading Youtube video playlist")
 playlist = pafy.get_playlist("PLy7eek8wTbV9OtrbY3CJo5mRWnhuwTen0")
 videos = playlist['items']
 daily_videos = {}

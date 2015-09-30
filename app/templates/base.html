@@ -2,26 +2,38 @@
 <html lang="en">
     <head>
         {% block head %}
-        <link rel="stylesheet" href="style.css" />
-        <title>{% block title %}{% endblock %} - My Webpage</title>
-        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
 
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="{{ url_for('ck_page.static', filename='chartkick.js') }}"></script>
-        <!-- <script src="ck/static/chartkick.js"></script> -->
+        <title>{% block title %}{% endblock %} - My Webpage</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.min.css')}}" />
+        <script src="{{ url_for('static', filename='lib/bootstrap.min.js') }}"></script>
+
+        {% endblock %}
     </head>
     <body>
-        <a href="/">Alkuun</a>
-        <a href="/day/20">Testilinkki päivä-sivulle</a>
-        
-        <div id="content">{% block content %}{% endblock %}</div>
-        
-        <div id="footer">
-            {% block footer %}
-            &copy; Copyright 2015 Jarkko Saltiola.
-            {% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <a class="navbar-brand" href="/">
+                        <em>weather<br/>lapse</em>
+                    </a>
+                </div>
+                {% block nav_content %}
+                {% endblock %}
+            </div>
+            
+            <div id="content">{% block content %}{% endblock %}</div>
+            
+
+            <div id="footer" class="text-center">
+                {% block footer %}
+                &copy; Copyright 2015 Jarkko Saltiola - MIT Source Code
+                <a target="_blank" href="https://github.com/jasalt/tiea207-demo">at Github</a>
+                <p><a target="_blank" href="http://pywws.readthedocs.org/en/latest/">pywws</a>, <a target="_blank" href="https://github.com/jasalt/timelapse-utils/tree/master/capture">fswebcam, crontab, raspberrypi</a>, rsync, flask, bootstrap</p>
+                {% endblock %}
+            </div>
+
         </div>
     </body>
 </html>
