@@ -4,8 +4,12 @@
 
 {% block content %}
 
-<h2><a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">~ 62°N 26°E</a></h2>
-<p>Timelapse videos mixed with weather station data.</p>
+<br/>
+
+<p>Timelapse videos mixed with weather station data. Location around
+    <a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">62°N 26°E</h2>,
+        central Finland
+</p>
 
 {% for year, months in videos.items() %}
 <h3>{{ year }}</h3>
@@ -26,5 +30,8 @@
 {% endfor %} <!-- years -->
 
 
+Frontend source code (MIT)
+<a target="_blank" href="https://github.com/jasalt/tiea207-demo">at Github</a>
+<p>Utilizing <a target="_blank" href="http://pywws.readthedocs.org/en/latest/">pywws</a>, <a target="_blank" href="https://github.com/jasalt/timelapse-utils/tree/master/capture">fswebcam, crontab, raspberrypi</a>, rsync, flask, bootstrap</p>
 
 {% endblock %}
