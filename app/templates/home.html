@@ -6,13 +6,25 @@
 
 <h2><a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">~ 62°N 26°E</a></h2>
 <p>Timelapse videos mixed with weather station data.</p>
-<h3 class="important">July 2015</h3>
-<ul>
-    {% for day, video in videos.items() %}
-    <li>
-        <a href="{{url_for('view_day', date=day)}}">{{day}}</a>
-    </li>
-    {% endfor %}
-</ul>
+
+{% for year, months in videos.items() %}
+<h3>{{ year }}</h3>
+<div class="row">
+    {% for month, days in months.items() %}
+    <div class="col-md-2 col-xs-4">
+        <h4>{{ month }}</h4>
+        <ul>
+            {% for day in days | sort %}
+            <li>
+                <a href="{{url_for('view_day', day=day, month=month, year=year)}}">{{day}}</a>
+            </li>
+            {% endfor %} <!-- days -->
+        </ul>
+    </div>
+    {% endfor %} <!-- months -->
+</div>
+{% endfor %} <!-- years -->
+
+
 
 {% endblock %}

@@ -17,19 +17,20 @@ def view_home():
     return render_template('home.html', videos=daily_videos)
 
 
-@app.route("/day/<date>")
-def view_day(date):
-    date = int(date)
+@app.route("/<int:year>/<int:month>/<int:day>")
+def view_day(year, month, day):
     try:
-        video_id = daily_videos[date].videoid
-        print("Show video %s for day %s." % (video_id, date))
+        video_id = daily_videos[year][month][day].videoid
+        print("Show video %s for day %s-%s-%s." % (video_id, year, month, day))
     except:
         video_id = None
-        print("No video for date.")
+        print("No video for day.")
 
-    days = list(daily_videos.keys())
-    this_index = days.index(int(date))
+    # days = list(daily_videos.keys())
 
+    # TODO fix pagination
+    this_index = 0  # days.index(int(day))
+    
     try:
         assert this_index != 0
         prev_day = days[this_index - 1]
@@ -43,8 +44,8 @@ def view_day(date):
 
     return render_template('day.html',
                            video_id=video_id,
-                           weather_data=daily_data.get(date),
-                           day=date, prev_day=prev_day, next_day=next_day)
+                           weather_data=daily_data.get(day),
+                           day=day, prev_day=prev_day, next_day=next_day)
 
 if __name__ == "__main__":
     app.run(debug=True)
