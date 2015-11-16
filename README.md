@@ -1,11 +1,8 @@
-# TIEA207 Demo 2015
-Esimerkkiprojekti aineopintojen projektityö-kurssille.
-[MIT](LICENSE) lisensoitu.
+# Weatherlapse
 
-## Synopsis
-Mashup sovellus joka esittää Youtubesta saatavaa päivittäin kuvattua sääkamera-videomateriaalia ja esittää samassa näkymässä sääasemasta ladattua säähavainto-dataa.
+Python Flask web application that presents timelapse content and related weather station data. Data is gathered with https://github.com/jasalt/timelapse-intra.
 
-![UI Proto](media/sketch.png) 
+Example project for TIEA207 open data project course. [MIT](LICENSE) licensed.
 
 # Development guide
 
@@ -34,16 +31,3 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 3) Push local repository to Heroku `git push heroku master`
 
 4) Access application at `http://<application_name>.herokuapp.com`
-
-# TODO
-- [x] Kaiva videolinkit Youtubesta
-- [x] Näkymä eri päivien valintaan
-- [x] Päivä-näkymä
-- [x] Käppyrät Chartkick kirjastolla
-- [x] Deploy
-- [x] Siirtymisnappulat
-- [x] Sää-datan parsiminen
-- [x] CSS
-- [ ] Kalenterivalitsin https://eonasdan.github.io/bootstrap-datetimepicker/
-- [ ] Kunnollinen päiväysten hallinta
-- [ ] Lisää sisältöä
