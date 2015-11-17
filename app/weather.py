@@ -10,7 +10,8 @@ DATA_DIR = 'weatherstation/data/2015-07/'
 
 filenames = listdir(DATA_DIR)
 
-daily_data = {}
+# TODO handle dates y/m/d
+weather_data = {}
 
 print("Reading weather data")
 
@@ -30,7 +31,7 @@ for fname in filenames:
     temperatures = [{'data': temps_out, 'name': 'Temperature outside'},
                     {'data': temps_in, 'name': 'Temperature inside'}]
 
-    daily_data[day] = {}
-    daily_data[day]['temp'] = temperatures
-    daily_data[day]['wind'] = winds
-    daily_data[day]['humid'] = humidities
+    weather_data[day] = {}
+    weather_data[day]['temp'] = temperatures
+    weather_data[day]['wind'] = winds
+    weather_data[day]['humid'] = humidities
