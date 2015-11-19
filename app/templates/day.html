@@ -14,12 +14,14 @@
         <ul class="pagination">
             {% if prev_day %}
             <li>
-                <a href="{{url_for('view_day', date=prev_day)}}" aria-label="Previous">
-                    <span aria-hidden="true">&raquo;</span>
+                <a href="{{url_for('view_day', year=prev_day['year'],
+                         month=prev_day['month'], day=prev_day['day'])}}"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             {% else %}
-            
+
             <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
             {% endif %}
 
@@ -27,7 +29,8 @@
 
             {% if next_day %}
             <li>
-                <a href="{{url_for('view_day', date=next_day)}}" aria-label="Next">
+                <a href="{{url_for('view_day', year=next_day['year'],
+                         month=next_day['month'], day=next_day['day'])}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

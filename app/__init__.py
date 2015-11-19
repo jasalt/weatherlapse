@@ -2,6 +2,8 @@ from flask import Flask, render_template, Blueprint
 import chartkick
 from app.youtube import all_videos
 from app.weather import weather_data
+from app.utils import has_next_day
+from app.utils import has_previous_day
 
 app = Flask(__name__)
 
@@ -26,26 +28,13 @@ def view_day(year, month, day):
         video_id = None
         print("No video for day.")
 
-    # days = list(all_videos.keys())
-
-    # TODO fix pagination
-    this_index = 0  # days.index(int(day))
-    
-    try:
-        assert this_index != 0
-        prev_day = days[this_index - 1]
-    except:
-        prev_day = None
-
-    try:
-        next_day = days[this_index + 1]
-    except:
-        next_day = None
-
     return render_template('day.html',
                            video_id=video_id,
-                           weather_data=weather_data.get(day),
-                           day=day, prev_day=prev_day, next_day=next_day)
+                           weather_data=weather_data.get(day), day=day,
+                           prev_day=has_previous_day(all_videos,
+                                                     year, month, day),
+                           next_day=has_next_day(all_videos,
+                                                 year, month, day))
 
 if __name__ == "__main__":
     app.run(debug=True)
