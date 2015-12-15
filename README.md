@@ -31,3 +31,6 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 3) Push local repository to Heroku `git push heroku master`
 
 4) Access application at `http://<application_name>.herokuapp.com`
+
+# Related projects
+https://github.com/dandelany/animate-earth
