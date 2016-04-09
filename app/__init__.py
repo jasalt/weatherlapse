@@ -28,9 +28,9 @@ def view_day(year, month, day):
         video_id = None
         print("No video for day.")
 
+    weather = weather_data.get("%04d%02d%02d" % (year, month, day))
     return render_template('day.html',
-                           video_id=video_id,
-                           weather_data=weather_data.get(day), day=day,
+                           video_id=video_id, weather=weather, day=day,
                            prev_day=has_previous_day(all_videos,
                                                      year, month, day),
                            next_day=has_next_day(all_videos,

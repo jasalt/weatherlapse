@@ -49,19 +49,24 @@
         <iframe width="800" height="450" src="https://www.youtube.com/embed/{{video_id}}?autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
+
+{% if weather is not none %}
 <div class="row">
     <p>Temperature outside vs inside (C):</p>
-    {% line_chart weather_data['temp'] %}
+    {% line_chart weather['temp'] %}
 </div>
 <div class="row">
     <div class="col-md-6">
         <p>Wind speed, average (m/s):</p>
-        {% line_chart weather_data['wind'] %}
+        {% line_chart weather['wind'] %}
     </div>
     <div class="col-md-6">
         <p>Relative humidity:</p>
-        {% line_chart weather_data['humid'] %}
+        {% line_chart weather['humid'] %}
     </div>
 </div>
+{% else %}
+<h5>No weather data to show.</h5>
+{% endif %}
 
 {% endblock %}
