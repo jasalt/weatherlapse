@@ -1,9 +1,11 @@
-from flask import Flask, render_template, Blueprint
+from flask import Flask, render_template, Blueprint, request
 import chartkick
 from app.youtube import all_videos
 from app.weather import weather_data
 from app.utils import has_next_day
 from app.utils import has_previous_day
+import os
+from werkzeug import secure_filename
 
 app = Flask(__name__)
 
@@ -36,5 +38,20 @@ def view_day(year, month, day):
                            next_day=has_next_day(all_videos,
                                                  year, month, day))
 
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+last_image = ''
+@app.route("/upload", methods=['POST'])
+def view_upload():
+    file = request.files['upload']
+    if file and allowed_file(file.filename):
+        orig_filename = secure_filename(file.filename)
+        last_image = orig_filename
+        file.save('last-capture.jpg')
+        return "File %s uploaded!" % orig_filename
+    
 if __name__ == "__main__":
     app.run(debug=True)
