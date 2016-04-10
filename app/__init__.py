@@ -9,9 +9,11 @@ from werkzeug import secure_filename
 from functools import wraps
 from flask import request, Response
 from app.utils import get_env
+from flask import send_from_directory
 
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = os.environ['HOME']
 
 # Chartkick initialization
 ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(),
@@ -41,6 +43,10 @@ def view_day(year, month, day):
                                                      year, month, day),
                            next_day=has_next_day(all_videos,
                                                  year, month, day))
+
+@app.route("/last-capture")
+def view_last_capture():
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'last-capture.jpg')
 
 
 #### Fileupload secured with basic auth
@@ -81,7 +87,8 @@ def view_upload():
     if file and allowed_file(file.filename):
         orig_filename = secure_filename(file.filename)
         last_image = orig_filename
-        file.save('last-capture.jpg')
+        filename = 'last-capture.jpg'
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return "File %s uploaded!" % orig_filename
     
 if __name__ == "__main__":
