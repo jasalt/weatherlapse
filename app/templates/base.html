@@ -4,8 +4,20 @@
         {% block head %}
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
 
-        <title>{% block title %}{% endblock %} - My Webpage</title>
+        <title>Landekamera</title>
 
+        <meta name="description" content="Automated timelapse recordings from Finnish countryside." />
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" value="Automated timelapse recordings from Finnish countryside.">
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="Landekamera" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="http://www.landekamera.fi/" />
+        <!-- <meta property="og:image" content="http://example.com/image.jpg" /> -->
+        <meta property="og:description" content="Automated timelapse recordings from Finnish countryside." />
+        
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.min.css')}}" />
         <script src="{{ url_for('static', filename='lib/bootstrap.min.js') }}"></script>
 
@@ -28,7 +40,7 @@
 
             <div id="footer" class="text-center">
                 {% block footer %}
-                <a href="http://saltio.la">Jarkko Saltiola (2016)</a>
+                <a href="http://saltio.la">by Jarkko Saltiola (2016)</a>
                 {% endblock %}
             </div>
         </div>
