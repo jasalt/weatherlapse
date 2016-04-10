@@ -1,4 +1,5 @@
 from toolz import first, last
+import os
 
 
 def has_next_day(dates_dict, year, month, day):
@@ -59,3 +60,13 @@ def has_previous_day(dates_dict, year, month, day):
         return({'year': prev_year, 'month': prev_month, 'day': last_day})
 
     return False
+
+
+def get_env(x):
+    res = os.environ.get(x)
+    if res is not None:
+        print("Found env var " + x + " " + res)
+        return res
+    else:
+        print("Env var " + x + " not found")
+        return None

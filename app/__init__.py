@@ -6,6 +6,10 @@ from app.utils import has_next_day
 from app.utils import has_previous_day
 import os
 from werkzeug import secure_filename
+from functools import wraps
+from flask import request, Response
+from app.utils import get_env
+
 
 app = Flask(__name__)
 
@@ -38,13 +42,40 @@ def view_day(year, month, day):
                            next_day=has_next_day(all_videos,
                                                  year, month, day))
 
+
+#### Fileupload secured with basic auth
+# set env variables UPLOAD_USER and UPLOAD_PASSWORD
+# curl -u <user>:<pass> -v -F name=test -F upload=@image.jpg http://localhost:5000/upload
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == get_env('UPLOAD_USER') and password == get_env('UPLOAD_PASSWORD')
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
 last_image = ''
 @app.route("/upload", methods=['POST'])
+@requires_auth
 def view_upload():
     file = request.files['upload']
     if file and allowed_file(file.filename):
