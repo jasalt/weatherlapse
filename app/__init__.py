@@ -25,12 +25,13 @@ ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(),
 app.register_blueprint(ck, url_prefix='/ck')
 app.jinja_env.add_extension("chartkick.ext.charts")
 
-
-last_capture = ''
+from datetime import datetime
 @app.route("/")
 def view_home():
     try:
-        last_capture = os.path.basename(glob(app.config['UPLOAD_FOLDER'] + '/*')[0])[:-4]
+        last_capture_str = os.path.basename(glob(app.config['UPLOAD_FOLDER'] + '/*')[0])[:-4]
+        dt = datetime.strptime(last_capture_str, "%Y%m%d-%H%M%S")
+        last_capture = "%s.%s.%s %02d:%02d" % (dt.day, dt.month, dt.year, dt.hour, dt.minute)
     except:
         last_capture = None
     return render_template('home.html',
