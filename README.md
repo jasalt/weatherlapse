@@ -43,5 +43,10 @@ Then schedule upload script on Raspberry and point it to `domain.tld/upload`:
 
     curl -u agent:secret -v -F name=test -F upload=@20150101.jpg http://localhost:5000/upload
 
-# Related projects
+
+Example cron command to post latest image 4 times per hour:
+
+    0,15,30,45 * * * * cd /home/pi/webcam/photos && cd $(ls | tail -1) && curl -u agent:secret -v -F name=test -F upload=@$(ls | tail -1) http://www.landekamera.fi/upload
+
+# Inspirational projects
 https://github.com/dandelany/animate-earth
