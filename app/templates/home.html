@@ -6,19 +6,18 @@
 
 <br/>
 
-<p>Timelapse videos mixed with weather station data. Location around
-    <a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">62°N 26°E</a>,
-        central Finland
-</p>
+<p>Automated timelapse videos from  <a target="_blank" href="https://www.google.fi/maps/place/62%C2%B000'00.0%22N+26%C2%B000'00.0%22E/@50.7502389,24.746812,3z/data=!4m2!3m1!1s0x0:0x0">Central Finland ~62°N 26°E</a></p>
 
 <div class="well well-sm">
 {% if last_capture is not none %}
     <img class="img-responsive" alt="Latest captured image" src="/last-capture"/>
-    <p class="text-center">Captured on {{last_capture}}</p>
-{% else %}
+    <p class="text-center">Captured on <strong>{{last_capture}}</strong></p>
+    {% else %}
 <p>Please send image to secured /upload endpoint to show it here!</p>
 {% endif %}
 </div>
+
+<h1>Browse timelapses:</h1>
 
 {% for year, months in videos.items() %}
 <h3>{{ year }}</h3>
@@ -38,6 +37,13 @@
 </div>
 {% endfor %} <!-- years -->
 
+<h3>See also</h3>
+<ul>
+    <li><a href="http://500px.com/tommisaltiola">Photography from here by Tommi Saltiola at 500px</a></li>
+    <li><a href="https://vimeo.com/channels/1056282">Videos on Vimeo</a></li>
+</ul>
+
+<h3>For developers</h3>
 
 Frontend source code (MIT)
 <a target="_blank" href="https://github.com/jasalt/tiea207-demo">at Github</a>
