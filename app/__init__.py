@@ -5,6 +5,7 @@ from app.weather import weather_data
 from app.utils import has_next_day
 from app.utils import has_previous_day
 import os
+from glob import glob
 from werkzeug import secure_filename
 from functools import wraps
 from flask import request, Response
@@ -13,7 +14,10 @@ from flask import send_from_directory
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.environ['HOME']
+UPLOAD_PATH = os.environ['HOME'] + '/last-capture'
+if not os.path.exists(UPLOAD_PATH):
+    os.makedirs(UPLOAD_PATH)
+app.config['UPLOAD_FOLDER'] = UPLOAD_PATH
 
 # Chartkick initialization
 ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(),
@@ -22,9 +26,16 @@ app.register_blueprint(ck, url_prefix='/ck')
 app.jinja_env.add_extension("chartkick.ext.charts")
 
 
+last_capture = ''
 @app.route("/")
 def view_home():
-    return render_template('home.html', videos=all_videos)
+    try:
+        last_capture = os.path.basename(glob(app.config['UPLOAD_FOLDER'] + '/*')[0])[:-4]
+    except:
+        last_capture = None
+    return render_template('home.html',
+                           last_capture=last_capture,
+                           videos=all_videos)
 
 
 @app.route("/<int:year>/<int:month>/<int:day>")
@@ -46,7 +57,9 @@ def view_day(year, month, day):
 
 @app.route("/last-capture")
 def view_last_capture():
-    return send_from_directory(app.config['UPLOAD_FOLDER'], 'last-capture.jpg')
+    last_filename = os.path.basename(glob(app.config['UPLOAD_FOLDER'] + '/*')[0])
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               last_filename)
 
 
 #### Fileupload secured with basic auth
@@ -79,17 +92,17 @@ def requires_auth(f):
         return f(*args, **kwargs)
     return decorated
 
-last_image = ''
 @app.route("/upload", methods=['POST'])
 @requires_auth
 def view_upload():
     file = request.files['upload']
     if file and allowed_file(file.filename):
-        orig_filename = secure_filename(file.filename)
-        last_image = orig_filename
-        filename = 'last-capture.jpg'
+        filename = secure_filename(file.filename)
+        print('Received file ' + filename)
+        files = glob(app.config['UPLOAD_FOLDER'] + '/*')
+        print('Removing old images ' + str(files)) 
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return "File %s uploaded!" % orig_filename
+        return "File %s uploaded!" % filename
     
 if __name__ == "__main__":
     app.run(debug=True)
