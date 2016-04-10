@@ -99,10 +99,16 @@ def view_upload():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         print('Received file ' + filename)
+
         files = glob(app.config['UPLOAD_FOLDER'] + '/*')
-        print('Removing old images ' + str(files)) 
+        for f in files:
+            print('Removing old image' + str(f)) 
+            os.remove(f)
+
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return "File %s uploaded!" % filename
+        files = glob(app.config['UPLOAD_FOLDER'] + '/*')
+        
+        return "File %s uploaded!" % files
     
 if __name__ == "__main__":
     app.run(debug=True)
