@@ -32,5 +32,16 @@ With [Heroku Toolbelt](https://toolbelt.heroku.com/) installed and account confi
 
 4) Access application at `http://<application_name>.herokuapp.com`
 
+# Uploader functionality
+Create upload user by adding environment variables to Heroku node:
+
+    heroku config:set UPLOAD_USER="agent" --app weatherlapse
+    heroku config:set UPLOAD_PASSWORD="secret" --app weatherlapse
+
+
+Then schedule upload script on Raspberry and point it to `domain.tld/upload`:
+
+    curl -u agent:secret -v -F name=test -F upload=@20150101.jpg http://localhost:5000/upload
+
 # Related projects
 https://github.com/dandelany/animate-earth
